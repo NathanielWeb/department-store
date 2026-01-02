@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # Command was moved to here from dockerfile because we created a new container, queue
+    command: 'python manage.py runserver 0.0.0.0:8000' 
+    ports:
+      # local host port on the left, dockerfile port on the right
+      - 8000:8000
+    volumes:
+      # means all the files are connected to the docker container (changes are updated between each other?)
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    # Sometimes mysql stops and this would stop our docker container (so just restart it again)
+    restart: always
+    environment:
+      MYSQL_DATABASE: main
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      # Create a folder dbdata which will map /var/lib/mysql
+      - dbdata:/var/lib/mysql
+    ports:
+      # left is local, right is docker? Don't use the same port for both so it doesn't conflict with mysql installation
+      - 33066:3306
+  
+volumes:
+  dbdata:

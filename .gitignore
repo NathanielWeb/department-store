@@ -1,15 +1,46 @@
-# Python
+# ======================
+# Python / Django
+# ======================
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-
-# Virtual environment
-venv/
-.env
-
-# Node (if you also have frontend)
-node_modules/
-
-# Database
 *.sqlite3
+*.log
+venv/
+env/
+.venv/
+local_settings.py
+db.sqlite3
+staticfiles/
+media/
+
+# ======================
+# Node / Next.js
+# ======================
+node_modules/
+.next/
+out/
+dist/
+
+# ======================
+# Environment variables
+# ======================
+.env
+.env.*
+.env.local
+
+# ======================
+# Docker
+# ======================
+dbdata/
+docker-compose.override.yml
+
+# ======================
+# OS / Editor
+# ======================
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
