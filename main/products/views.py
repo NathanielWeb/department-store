@@ -44,7 +44,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     
 # Use CreateAPIView here because we only want to POST
 class RegisterView(generics.CreateAPIView):
-    queryset = CustomUser.objecsts.all()
+    queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
 

@@ -8,7 +8,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 # Register serrializer to hash password
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, min_length=8)
+    password = serializers.CharField(
+        write_only=True, 
+        min_length=8,
+        error_messages={
+            "min_length": "Password must be at least 8 characters long"
+        }
+    )
 
     class Meta:
         model = CustomUser
@@ -24,12 +30,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 class FavouriteProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavouriteProduct
-        fields = ['id', 'username', 'product_id']
+        fields = ['id', 'product_id']
 
 class CartItemSerializer(serializers.ModelSerializer):
+    # Assert that quantity is an int between 1 and 10
+    quantity = serializers.IntegerField(min_value=1, max_value=10)
+
     class Meta:
         model = CartItem
-        fields = ['id', 'username', 'product_id']
+        fields = ['id', 'product_id', 'quantity']
 
 
     
