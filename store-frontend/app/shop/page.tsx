@@ -16,7 +16,7 @@ const Shop = () => {
     const [cartProductIds, setCartProductIds] = useState<Number[]>([]);
     const [favouriteroductIds, setFavouriteProductIds] = useState<Number[]>([]);
 
-    // Grab the jwt token
+    // Grab JWT token
     useEffect(() => {
         const storedToken = localStorage.getItem("access");
 
@@ -27,7 +27,7 @@ const Shop = () => {
         }
 
         setToken(storedToken);
-    }, [router])
+    }, [router]);
 
     // Grab the products from dummyjson
     useEffect(() => {
@@ -60,7 +60,7 @@ const Shop = () => {
         (
             async () => {
                 try {
-                    const cartRes = await fetch("http://localhost:8000/api/cart/", {
+                    const cartRes = await authFetch("http://localhost:8000/api/cart/", {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -74,7 +74,7 @@ const Shop = () => {
                         )
                     }
 
-                    const favRes = await fetch("http://localhost:8000/api/favourites/", {
+                    const favRes = await authFetch("http://localhost:8000/api/favourites/", {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -119,6 +119,9 @@ const Shop = () => {
             alert("Failed to add item");
             setError("Failed to add item");
         }
+
+        // Immediately updating state so the button becomes disabled
+        setCartProductIds([...cartProductIds, product.id]);
     }
 
     // Logic for add to favourites button
@@ -142,6 +145,9 @@ const Shop = () => {
             alert("Failed to add favourites");
             setError("Failed to add favourites");
         }
+
+        // Immediately updating state so the button becomes disabled
+        setFavouriteProductIds([...favouriteroductIds, product.id]);
     }
 
     return (
@@ -184,7 +190,8 @@ const Shop = () => {
 
                             <h3 className="text-lg font-semibold">{product.title}</h3>
                             <p className="mb-3 text-gray-700">{product.title}</p>
-                            <p className="mb-3 text-gray-700">{product.rating}</p>
+                            <p className="mb-1 text-gray-700">Price: {product.price}</p>
+                            <p className="mb-3 text-gray-700">Rating: {product.rating}</p>
                             
                             {/* Select quantity option*/}
                             <p>
