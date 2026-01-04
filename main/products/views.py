@@ -1,8 +1,9 @@
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, generics, serializers
 from .models import CustomUser, FavouriteProduct, CartItem
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import CustomUserSerializer, FavouriteProductSerializer, CartItemSerializer, RegisterSerializer
+from django.db import IntegrityError
 
 # Object-level permission: (Makes it so only the owner of an object can access that object)
 class IsOwner(permissions.BasePermission):
@@ -85,8 +86,13 @@ class FavouriteProductViewSet(viewsets.ModelViewSet):
         return FavouriteProduct.objects.filter(user=requestUser)
     
     def perform_create(self, serializer):
-        # Automatically sets user to request.user
-        serializer.save(user=self.request.user)
+        # Automatically sets user to request.user if there is no IntegrityError
+        try:
+            serializer.save(user=self.request.user)
+        except IntegrityError:
+            raise serializers.ValidationError(
+                {"detail": "The product is already in your cart"}
+            )
 
 
 class CartItemViewSet(viewsets.ModelViewSet):
@@ -105,8 +111,13 @@ class CartItemViewSet(viewsets.ModelViewSet):
         return CartItem.objects.filter(user=requestUser)
     
     def perform_create(self, serializer):
-        # Automatically sets user to request.user
-        serializer.save(user=self.request.user)
+        # Automatically sets user to request.user if there is no IntegrityError
+        try:
+            serializer.save(user=self.request.user)
+        except IntegrityError:
+            raise serializers.ValidationError(
+                {"detail": "The product is already in your cart"}
+            )
 
 
 

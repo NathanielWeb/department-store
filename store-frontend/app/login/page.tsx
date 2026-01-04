@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
@@ -8,6 +8,16 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    // Check if user is at login page because his session expired
+    useEffect(() => {
+        const msg = sessionStorage.getItem("auth_error");
+
+        if (msg) {
+            setError(msg);
+            sessionStorage.removeItem("auth_error");
+        }
+    })
 
     // Define what should be done when form is submitted
     const submit = async (event: React.FormEvent) => {

@@ -30,7 +30,14 @@ class RegisterSerializer(serializers.ModelSerializer):
 class FavouriteProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavouriteProduct
-        fields = ['id', 'product_id']
+        fields = [
+            'id', 
+            'product_id',
+            "title",
+            "price",
+            "thumbnail",
+            "rating"
+        ]
 
 class CartItemSerializer(serializers.ModelSerializer):
     # Assert that quantity is an int between 1 and 10
@@ -38,7 +45,16 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = ['id', 'product_id', 'quantity']
+        fields = [
+            'id', 
+            'product_id',
+            "title",
+            "price",
+            "thumbnail",
+            "rating",
+            "quantity"
+        ]
+
 
 
     

@@ -16,6 +16,10 @@ class FavouriteProduct(models.Model):
         related_name = "favourites" # Sets it up so that you can go from a user and get all of their favourite products using this name
     )
     product_id = models.PositiveIntegerField()
+    title = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    thumbnail = models.URLField(blank=True, null=True)
+    rating = models.FloatField()
 
     class Meta: 
         unique_together = ("user", "product_id") # Makes it so combination of user and product id must be unique (a user cannot favourite the same product twice)
@@ -32,8 +36,14 @@ class CartItem(models.Model):
         on_delete = models.CASCADE, # If a user is deleted then this will delete all their cart items
         related_name = "cart_items" # Sets it up so that you can go from a user and get all of their cart items using this name
     )
+    
     product_id = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)
+    title = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    thumbnail = models.URLField(blank=True, null=True)
+    rating = models.FloatField()
+
 
     class Meta: 
         unique_together = ("user", "product_id") # Makes it so combination of user and product id must be unique (a user cannot add the same product to the cart twice)
