@@ -7,6 +7,10 @@ const LogoutButton = () => {
     const router = useRouter();
 
     const logout = () => {
+        const confirmed = confirm("Are you sure you want to logout?");
+        if (!confirmed) {
+           return; 
+        }
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         router.push("/login");
