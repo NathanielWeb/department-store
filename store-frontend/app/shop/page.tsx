@@ -12,7 +12,7 @@ const Shop = () => {
     const [products, setProducts] = useState<Product[]>([]); 
     const [error, setError] = useState("");
     const [token, setToken] = useState<string | null>(null);
-    const [quantities, setQuantities] = useState<Record<number, number>>({})
+    const [quantities, setQuantities] = useState<Record<number, number>>({});
     const [cartProductIds, setCartProductIds] = useState<Number[]>([]);
     const [favouriteroductIds, setFavouriteProductIds] = useState<Number[]>([]);
 
@@ -190,7 +190,7 @@ const Shop = () => {
 
                             <h3 className="text-lg font-semibold">{product.title}</h3>
                             <p className="mb-3 text-gray-700">{product.title}</p>
-                            <p className="mb-1 text-gray-700">Price: {product.price}</p>
+                            <p className="mb-1 text-gray-700">Price: ${product.price}</p>
                             <p className="mb-3 text-gray-700">Rating: {product.rating}</p>
                             
                             {/* Select quantity option*/}

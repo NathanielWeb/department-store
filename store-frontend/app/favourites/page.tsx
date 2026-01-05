@@ -100,7 +100,7 @@ const Favourites = () => {
                                 />
 
                                 <h3 className="text-lg font-semibold">{product.title}</h3>
-                                <p className="mb-1 text-gray-700">Price: {product.price}</p>
+                                <p className="mb-1 text-gray-700">Price: ${product.price}</p>
                                 <p className="mb-3 text-gray-700">Rating: {product.rating}</p>
 
                                 <button

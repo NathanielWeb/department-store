@@ -98,7 +98,7 @@ class FavouriteProductViewSet(viewsets.ModelViewSet):
 class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwner]
-    http_method_names = ['get', 'post', 'delete'] # Users can get, add, and delete items from their cart 
+    http_method_names = ['get', 'post', 'delete', 'patch'] # Users can get, add, delete, and patch items for their cart
 
     def get_queryset(self):
         requestUser = self.request.user
