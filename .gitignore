@@ -44,3 +44,15 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# ==================
+# Local folders that should stay local
+# ==================
+old-main-stuff/
+
+
+# ======================
+# SQL stuff
+# ======================
+.sql
+sql-local/

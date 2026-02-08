@@ -13,3 +13,5 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 # Copy all of the files to the app directory
 COPY . /app
+
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8080"]

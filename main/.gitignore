@@ -13,3 +13,10 @@ node_modules/
 
 # Database
 *.sqlite3
+
+# Certificate files
+certs/
+
+# SQL stuff
+.sql
+sql-local/
