@@ -7,6 +7,8 @@ import { Product } from "@/interfaces/product";
 import LogoutButton from "@/components/LogoutButton";
 import authFetch from "@/lib/authFetch";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const Shop = () => {
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>([]); 
@@ -60,7 +62,7 @@ const Shop = () => {
         (
             async () => {
                 try {
-                    const cartRes = await authFetch("http://localhost:8000/api/cart/", {
+                    const cartRes = await authFetch(`${BASE_URL}/api/cart/`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -74,7 +76,7 @@ const Shop = () => {
                         )
                     }
 
-                    const favRes = await authFetch("http://localhost:8000/api/favourites/", {
+                    const favRes = await authFetch(`${BASE_URL}/api/favourites/`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -99,7 +101,7 @@ const Shop = () => {
     const addToCart = async (product: Product) => {
         const quantity = quantities[product.id] ?? 1;
 
-        const res = await authFetch("http://localhost:8000/api/cart/", {
+        const res = await authFetch(`${BASE_URL}/api/cart/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -126,7 +128,7 @@ const Shop = () => {
 
     // Logic for add to favourites button
     const addToFavourites = async (product: Product) => {
-        const res = await authFetch("http://localhost:8000/api/favourites/", {
+        const res = await authFetch(`${BASE_URL}/api/favourites/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

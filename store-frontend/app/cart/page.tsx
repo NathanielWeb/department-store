@@ -9,7 +9,10 @@ import LogoutButton from "@/components/LogoutButton";
 import BackToShopButton from "@/components/BackToShopButton";
 import authFetch from "@/lib/authFetch";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const TAX_RATE = 0.13;
+
 
 import React from 'react'
 
@@ -41,7 +44,7 @@ const Cart = () => {
         (
             async () => {
                 
-                const res = await authFetch("http://localhost:8000/api/cart/");
+                const res = await authFetch(`${BASE_URL}/api/cart/`);
                 if (!res.ok) {
                     setError("Failed to load cart items");
                     return;
@@ -54,7 +57,7 @@ const Cart = () => {
 
     // Remove item from cart
     const removeItem = async (cartItemId: number) => {
-        const res = await authFetch(`http://localhost:8000/api/cart/${cartItemId}/`, {
+        const res = await authFetch(`${BASE_URL}/api/cart/${cartItemId}/`, {
             method: "DELETE"
         });
 
@@ -67,7 +70,7 @@ const Cart = () => {
 
     // Update quantity
     const updateQuantity = async (id: number, quantity: number) => {
-        const res = await authFetch(`http://localhost:8000/api/cart/${id}/`, {
+        const res = await authFetch(`${BASE_URL}/api/cart/${id}/`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ quantity })
@@ -87,7 +90,7 @@ const Cart = () => {
         }
 
         for (const item of cartItems) {
-            await authFetch(`http://localhost:8000/api/cart/${item.id}/`, {
+            await authFetch(`${BASE_URL}/api/cart/${item.id}/`, {
                 method: "DELETE"
             });
         }

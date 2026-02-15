@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const Register = () => {
     const router = useRouter();
     const [username, setUsername] = useState("");
@@ -13,7 +15,7 @@ const Register = () => {
         event.preventDefault();
 
         // Fetching from backend 
-        const res = await fetch("http://localhost:8000/api/auth/register/", {
+        const res = await fetch(`${BASE_URL}/api/auth/register/`, {
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({username, password})

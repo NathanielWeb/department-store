@@ -8,6 +8,8 @@ import LogoutButton from "@/components/LogoutButton";
 import BackToShopButton from "@/components/BackToShopButton";
 import authFetch from "@/lib/authFetch";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const Favourites = () => {
     const router = useRouter();
     const [favourites, setFavourites] = useState<Product[]>([]);
@@ -36,7 +38,7 @@ const Favourites = () => {
         (
             async () => {
                 try {
-                    const res = await authFetch("http://localhost:8000/api/favourites/", {
+                    const res = await authFetch(`${BASE_URL}/api/favourites/`, {
                         headers: {
                             "Content-Type": "application/json"
                         }
@@ -59,7 +61,7 @@ const Favourites = () => {
 
     // Remove from favourites
     const removeFromFavourites = async (productId: number) => {
-        const res = await authFetch(`http://localhost:8000/api/favourites/${productId}/`, {
+        const res = await authFetch(`${BASE_URL}/api/favourites/${productId}/`, {
             method: "DELETE"
         });
 

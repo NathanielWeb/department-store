@@ -158,3 +158,18 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1), # This is so that cookies expire after 1 hour instead of default of 5 minutes
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7) # Changes refresh token to 7 days instead of 1 day default
 }
+
+# Force all Django logs (except exceptions) to be printed to the console
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler"
+        }
+    }, 
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG"
+    }
+}
