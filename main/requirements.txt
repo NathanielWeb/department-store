@@ -7,3 +7,4 @@ pika==1.1.0
 djangorestframework-simplejwt==5.5.1
 django-extensions==3.2.3
 gunicorn>=21.0.1<22
+python-dotenv
