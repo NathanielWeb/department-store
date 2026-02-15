@@ -16,4 +16,7 @@ RUN pip install -r requirements.txt
 # Copy all of the files to the app directory
 COPY main/ /app
 
+# Copy the certificate into Docker container
+COPY certs /app/certs
+
 CMD gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
