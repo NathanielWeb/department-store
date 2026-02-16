@@ -4,5 +4,5 @@ This is my Department Store Project that has a Next.js frontend with a Django an
 
 ## Link to website
 Here is a link to the website so that you can test all the features:
-<a href="https://department-store-one.vercel.app/" target="_blank">Link to Vercel deployment</a>
+<a href="https://department-store-one.vercel.app/" target="_blank" rel="noopener noreferrer">Link to Vercel deployment</a>
 
