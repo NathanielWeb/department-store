@@ -11,6 +11,3 @@ The backend of this project is hosted on Render's free tier. According to Render
 
 I have attempted to mitigate this issue using an uptime ticker. However, it is possible that the ticker fails, and the instance
 has spun down. In this case, just wait for a minute and the application will proceed as normal. 
-
-## Additional notice:
-Commits were made using my school account webst149. 
