@@ -4,6 +4,10 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import CustomUserSerializer, FavouriteProductSerializer, CartItemSerializer, RegisterSerializer
 from django.db import IntegrityError
+from django.http import JsonResponse
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
 
 # Object-level permission: (Makes it so only the owner of an object can access that object)
 class IsOwner(permissions.BasePermission):
